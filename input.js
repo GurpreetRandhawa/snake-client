@@ -6,7 +6,7 @@ const {
   MOVE_RIGTH_KEY,
   msgKey,
 } = require("./constants");
-const handleUserInput = function(key) {
+const handleUserInput = function (key) {
   if (key === "\u0003") {
     process.exit();
   } else if (key === MOVE_UP_KEY) {
@@ -17,11 +17,13 @@ const handleUserInput = function(key) {
     connection.write("Move: down");
   } else if (key === MOVE_RIGTH_KEY) {
     connection.write("Move: right");
-  } else if (key === Object.keys(msgKey)[0]) {
+  }
+  // checking if key pressed is same as key assigned for message
+  else if (key === Object.keys(msgKey)[0]) {
     connection.write(`Say: ${msgKey[Object.keys(msgKey)[0]]}`);
   }
 };
-const setupInput = function(conn) {
+const setupInput = function (conn) {
   connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
